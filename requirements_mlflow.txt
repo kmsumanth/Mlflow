@@ -1,0 +1,7 @@
+mlflow
+dvc
+sklearn
+ipykernel
+scikit-learn
+pandas 
+numpy 
