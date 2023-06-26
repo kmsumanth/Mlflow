@@ -1,0 +1,15 @@
+artifact_uri: file:///C:/Users/kms/mlflow/mlruns/0/a29acc3f97754b96846d351de86efa5b/artifacts
+end_time: 1687796187162
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: a29acc3f97754b96846d351de86efa5b
+run_name: nimble-hog-576
+run_uuid: a29acc3f97754b96846d351de86efa5b
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1687796183609
+status: 3
+tags: []
+user_id: kms

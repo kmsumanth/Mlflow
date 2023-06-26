@@ -8,7 +8,7 @@ import mlflow.sklearn
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.linear_model import ElasticNet 
 
-from sklearn.metrics import mean_squared_error,mean_absolute_error,r2_score,accuracy_score
+from sklearn.metrics import mean_squared_error,mean_absolute_error,r2_score,accuracy_score,roc_auc_score
 from sklearn.model_selection import train_test_split
 
 import argparse
@@ -46,21 +46,31 @@ def main(n_estimator,max_depth):
     lr.fit(X_train,y_train)
     pred=lr.predict(X_test)
     '''
-    rf=RandomForestClassifier(n_estimators=n_estimator,max_depth=max_depth)
-    rf.fit(X_train,y_train)
-    pred=rf.predict(X_test)
+    with mlflow.start_run():
+        rf=RandomForestClassifier(n_estimators=n_estimator,max_depth=max_depth)
+        rf.fit(X_train,y_train)
+        pred=rf.predict(X_test)
+        pred_prob=rf.predict_proba(X_test)
 
 
-    #evaluate the model 
-    '''mae,mse,rmse,r2=evaluate(pred,y_test)
-    print(f"mae {mae}")
-    print(f"mse {mse}")
-    print(f"rmse {rmse}")
-    print(f"r2 score {r2}")'''
+        #evaluate the model 
+        '''mae,mse,rmse,r2=evaluate(pred,y_test)
+        print(f"mae {mae}")
+        print(f"mse {mse}")
+        print(f"rmse {rmse}")
+        print(f"r2 score {r2}")'''
 
-    #evaluate classification model 
-    accuracy=evaluate(pred,y_test)
-    print(f"the accuracy of random forest is {accuracy}")
+        #evaluate classification model 
+        accuracy=evaluate(pred,y_test)
+        #roc_auc=roc_auc_score(pred_prob,y_test,multi_class='ovr')
+        mlflow.log_param('n_estimator',n_estimator)
+        mlflow.log_param("max_depth",max_depth)
+        mlflow.log_metric("accuracy",accuracy)
+       # mlflow.log_metric("roc auc curve ",roc_auc)
+
+       # logging model using mlflow sklearn
+        mlflow.sklearn.log_model(rf,"randomforestmodel")
+        print(f"the accuracy of random forest is {accuracy}")
 
 
 

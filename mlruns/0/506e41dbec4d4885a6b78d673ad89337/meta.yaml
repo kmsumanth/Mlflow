@@ -1,0 +1,15 @@
+artifact_uri: file:///C:/Users/kms/mlflow/mlruns/0/506e41dbec4d4885a6b78d673ad89337/artifacts
+end_time: 1687796235309
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: 506e41dbec4d4885a6b78d673ad89337
+run_name: trusting-squid-951
+run_uuid: 506e41dbec4d4885a6b78d673ad89337
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1687796231534
+status: 3
+tags: []
+user_id: kms
